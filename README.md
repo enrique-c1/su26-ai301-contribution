@@ -1,17 +1,15 @@
 # Contribution [#]: [Issue Title]
 
-**Contribution Number:** [1 / 2 / 3]  
-**Student:** [Your Name]  
-**Issue:** [GitHub issue link]  
-**Status:** [Phase I / Phase II / Phase III / Phase IV] [In Progress / Complete]
+**Contribution Number:** 1  
+**Student:** Enrique Carrillo 
+**Issue:** [[GitHub issue link] ](https://github.com/documentdb/functional-tests/issues/206) 
+**Status:** Phase I Complete
 
 ---
 
 ## Why I Chose This Issue
+I chose this issue as it presents a common scenario that I will be facing throughout my career. That issue/task being writing tests to ensure correct code functionality. By working on this task I hope to gain hands on experience with writing tests and how compatibility works. As a CS student in college this will help enchance my code comprehension skills and allow me to contribute more meaningful to other open source projects.
 
-[1-2 paragraphs explaining why this issue interests you, how it matches your skills/learning goals, what you hope to learn]
-
----
 
 ## Understanding the Issue
 
