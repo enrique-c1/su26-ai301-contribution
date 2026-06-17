@@ -1,4 +1,4 @@
-# Contribution [#]: [Issue Title]
+# Contribution [#206]: Add compatibility test for $binarySize
 
 **Contribution Number:** 1  
 **Student:** Enrique Carrillo 
@@ -14,34 +14,29 @@ I chose this issue as it presents a common scenario that I will be facing throug
 ## Understanding the Issue
 
 ### Problem Description
-
-[In your own words, what's broken or missing?]
+Currently there is no issue present, what is missing is a compability test for the $binarySize function which needs to ensure that the function works the same between documentDB and mongoDB, not actually checking wether the function works as intended or not.
 
 ### Expected Behavior
 
-[What should happen?]
+The function $binarySize should work the same on both documentDB and mongoDB.
 
 ### Current Behavior
 
-[What actually happens?]
+There is a possiblity that the function does not work the same on both documentDB and mongoDB which is why the compability test is needed.
 
 ### Affected Components
 
-[Which parts of the codebase are involved?]
-
----
+Many files are included but the main files are documentdb_tests and more specifically binarySize which is under documentdb_tests.
 
 ## Reproduction Process
 
 ### Environment Setup
 
-[Notes on setting up your local development environment - challenges you faced, how you solved them]
+Thankfully I faced no issues in setting up the enviroment. The CONTRIBUTING.md is very detailed and clear in what to do allowing for a smooth enviroment setup.
 
 ### Steps to Reproduce
-
-1. [Step 1]
-2. [Step 2]
-3. [Observed result]
+As there is no current issue but the exact file can be difficult to find, here is the file tree to explore the get to the binarySize folder quickly.
+  documentdb_tests/compatibility/tests/core/operator/expressions/misc/binarySize/
 
 ### Reproduction Evidence
 
@@ -63,22 +58,23 @@ I chose this issue as it presents a common scenario that I will be facing throug
 
 ### Implementation Plan
 
-Using UMPIRE framework (adapted):
+**Understand:**
+$binarySize is an expression operator with well-defined behavior that currently lacks thorough test coverage. The goal is to close that gap by verifying DocumentDB and MongoDB behave identically across all meaningful input scenarios.
 
-**Understand:** [Restate the problem]
-
-**Match:** [What similar patterns/solutions exist in the codebase?]
+**Match:**
+New tests mirror the structure and patterns already established by the $strLenBytes compatibility tests, which is a closely related operator with a complete test suite. The same conventions, utilities, and assertion helpers are reused for consistency.
 
 **Plan:** [Step-by-step implementation plan]
-1. [Modify file X to do Y]
-2. [Add function Z]
-3. [Update tests]
+Six new test files covering: byte counting (strings and binary data), null/missing inputs, input forms, type errors, and arity errors. A shared utilities module and a new named error code constant round out the additions. The existing smoke test will be left untouched.
 
-**Implement:** [Link to your branch/commits as you work]
+**Implement:** 
+https://github.com/enrique-c1/functional-tests/tree/fix-issue-206
 
-**Review:** [Self-review checklist - does it follow the project's contribution guidelines?]
+**Review:** 
+Tests follow project conventions: descriptive names, docstrings, one assertion per test, no magic numbers, and constants pulled from the shared framework. Commits are present-tense and concise, I will run pre-commit before pushing.
 
-**Evaluate:** [How will you verify it works?]
+**Evaluate:**
+Run the new test suite against both MongoDB and DocumentDB and confirm identical results. Any disagreement is either a real compatibility finding or an expectation to correct against MongoDB's behavior.
 
 ---
 
