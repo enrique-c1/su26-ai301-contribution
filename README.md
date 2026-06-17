@@ -3,7 +3,7 @@
 **Contribution Number:** 1  
 **Student:** Enrique Carrillo 
 **Issue:** [[GitHub issue link] ](https://github.com/documentdb/functional-tests/issues/206) 
-**Status:** Phase I Complete
+**Status:** Phase II Complete
 
 ---
 
