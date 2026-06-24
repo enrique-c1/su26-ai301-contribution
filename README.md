@@ -3,7 +3,7 @@
 **Contribution Number:** 1  
 **Student:** Enrique Carrillo 
 **Issue:** [[GitHub issue link] ](https://github.com/documentdb/functional-tests/issues/206) 
-**Status:** Phase II Complete
+**Status:** Phase III in progress
 
 ---
 
@@ -82,7 +82,7 @@ Run the new test suite against both MongoDB and DocumentDB and confirm identical
 
 ### Unit Tests
 
-- [ ] Test case 1: [Description]
+- [ ] Compatibility tests for the $binarySize operator: verifying DocumentDB and MongoDB return identical byte sizes for string (UTF-8 byte count) and BinData (payload length) inputs
 - [ ] Test case 2: [Description]
 - [ ] Test case 3: [Description]
 
@@ -99,19 +99,20 @@ Run the new test suite against both MongoDB and DocumentDB and confirm identical
 
 ## Implementation Notes
 
-### Week [X] Progress
+### Week 1 Progress
 
-[What you built this week, challenges faced, decisions made]
+Added compatibility tests for the $binarySize operator, verifying DocumentDB and MongoDB return identical byte sizes for string (UTF-8 byte count) and BinData (payload length) inputs, with MongoDB as the reference. Created 21 parametrized cases covering ASCII/multibyte strings, embedded nulls, and binary payloads across different subtypes. The main challenge was the validation environment: a free Atlas M0 cluster rejected every test because its 38-byte database-name cap is smaller than the framework's auto-generated names, so I switched to a local MongoDB instance where all 21 passed. Some decisions I made were: centralizing the shared test dataclass in utils/ to avoid duplication across rounds, keeping UTF-8 cases representative rather than exhaustive (that encoding behavior is covered elsewhere).
 
-### Week [Y] Progress
+### Week [2] Progress
 
-[Continue documenting as you work]
+WIP
 
 ### Code Changes
 
-- **Files modified:** [List]
-- **Key commits:** [Links to important commits]
-- **Approach decisions:** [Why you chose certain approaches]
+- **Files modified:** test_binarySize_byte_counts.py
+- **Key commits:** https://github.com/enrique-c1/functional-tests/tree/fix-issue-206
+- **Approach decisions:** I chose to treat any DocumentDB-only failure as a real compatibility finding rather than loosening assertions, this was because if there was a failure but only on DocumentDB it meant that there was a discrepancy between documentDB and mongoDB, loosening assertions would only defeat the purpose of the compability tests.
+
 
 ---
 
